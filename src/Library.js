@@ -24,38 +24,27 @@ function addBook(library, book) {
 }
 
 
-function checkoutBook(library, bookTitle, bookGenre) {
-  var checkoutMessage = `You have now checked out ${bookTitle} from the ${library.name}`
-
-  if (library.shelves.fantasy[0].genre === bookGenre && library.shelves.fantasy[0].title === bookTitle) {
-    library.shelves.fantasy.shift(library.shelves.fantasy[0]);
-  } else if (library.shelves.fiction[0].genre === bookGenre && library.shelves.fiction[0].title === bookTitle) {
-    library.shelves.fiction.shift(library.shelves.fiction[0]);
-  } else if (library.shelves.nonFiction[0].genre === bookGenre && library.shelves.nonFiction[0].title === bookTitle) {
-    library.shelves.nonFiction.shift(library.shelves.nonFiction[0]);
-  } else {
-    checkoutMessage = `Sorry, there are currently no copies of ${bookTitle} available at the ${library.name}`
-  }
-  return checkoutMessage;
-}
-
-// function before
 // function checkoutBook(library, bookTitle, bookGenre) {
-//   var checkoutMessage = `You have now checked out ${bookTitle} from the ${library.name}`
 //
-//   if (library.shelves.fantasy[0].genre === bookGenre && library.shelves.fantasy[0].title === bookTitle) {
-//     library.shelves.fantasy.shift(library.shelves.fantasy[0]);
-//   } else if (library.shelves.fiction[0].genre === bookGenre && library.shelves.fiction[0].title === bookTitle) {
-//     library.shelves.fiction.shift(library.shelves.fiction[0]);
-//   } else if (library.shelves.nonFiction[0].genre === bookGenre && library.shelves.nonFiction[0].title === bookTitle) {
-//     library.shelves.nonFiction.shift(library.shelves.nonFiction[0]);
-//   } else {
-//     checkoutMessage = `Sorry, there are currently no copies of ${bookTitle} available at the ${library.name}`
-//   }
-//   return checkoutMessage;
 // }
 
 
+
+
+function checkoutBook(library, bookTitle, bookGenre) {
+  var checkoutMessage = `You have now checked out ${bookTitle} from the ${library.name}`
+
+  if (library.shelves.nonFiction.length > 0 && library.shelves.nonFiction[0].title === bookTitle) {
+    library.shelves.nonFiction.shift();
+  } else if (library.shelves.fiction.length > 0 && library.shelves.fiction[0].title === bookTitle) {
+    library.shelves.fiction.shift();
+  } else if (library.shelves.fantasy.length > 0 && library.shelves.fantasy[0].title === bookTitle) {
+    library.shelves.fantasy.shift();
+  } else {
+    return checkoutMessage = `Sorry, there are currently no copies of ${bookTitle} available at the ${library.name}`
+  }
+  return checkoutMessage;
+}
 
 
 module.exports = {
