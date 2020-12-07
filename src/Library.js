@@ -24,12 +24,6 @@ function addBook(library, book) {
 }
 
 
-// function checkoutBook(library, bookTitle, bookGenre) {
-//
-// }
-
-
-
 
 function checkoutBook(library, bookTitle, bookGenre) {
   var checkoutMessage = `You have now checked out ${bookTitle} from the ${library.name}`
